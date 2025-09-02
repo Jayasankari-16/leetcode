@@ -1,0 +1,23 @@
+
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head==null||head.next==null||k==0) return head;
+        ListNode temp=head;
+        int length =1;
+        while(temp.next!=null){
+            length++;
+            temp=temp.next;
+        }
+         //Make it circular
+        temp.next = head; // tail connects to head
+        k=k%length;
+        ListNode newTail = head;
+        int stepsTonewHead=length-k;//k is at new tail or lastpoint
+        for(int i=1;i<stepsTonewHead;i++){
+            newTail=newTail.next;
+        }
+        ListNode newHead=newTail.next;
+        newTail.next=null;
+        return newHead;
+    }
+}
